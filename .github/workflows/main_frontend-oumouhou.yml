@@ -20,15 +20,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies and build (dans dossier frontend)
+      - name: Install dependencies and build
         run: |
-          cd frontend
           npm install
           npm run build
+        working-directory: frontend  # 👈 important !
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'frontend-oumouhou' # vérifie ce nom
+          app-name: 'frontend-oumouhou'  # remplace si nécessaire
           slot-name: 'Production'
-          package: frontend/build
+          package: frontend/build        # 👈 important aussi !
