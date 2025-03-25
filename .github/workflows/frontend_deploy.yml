@@ -32,6 +32,6 @@ jobs:
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'frontend-oumouhou'  # remplace par le vrai nom de ton App Service Azure
+          app-name: 'frontend-oumouhou'  # doit correspondre au nom exact dans Azure
           slot-name: 'Production'
           package: build
