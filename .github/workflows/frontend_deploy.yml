@@ -11,10 +11,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: frontend
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,14 +20,15 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies and build
+      - name: Install dependencies and build (dans dossier frontend)
         run: |
+          cd frontend
           npm install
           npm run build
 
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'frontend-oumouhou'  # ← remplace si nécessaire
+          app-name: 'frontend-oumouhou' # vérifie ce nom
           slot-name: 'Production'
-          package: build
+          package: frontend/build
